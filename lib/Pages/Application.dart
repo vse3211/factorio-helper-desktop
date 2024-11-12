@@ -38,6 +38,7 @@ class FHD extends StatefulWidget {
 class _FHDState extends State<FHD> {
   Color _seedColor = const Color(0xFFffa900);
   ThemeData? _currentTheme;
+
   void _changeTheme() {
     setState(() {
       _seedColor = Colors.red;
@@ -63,7 +64,6 @@ class _FHDState extends State<FHD> {
     final Color primaryColor = theme.colorScheme.primary;
     final Color secondaryColor = theme.colorScheme.secondary;
     final Size windowSize = MediaQuery.of(context).size;
-
 
     final ContextHelperTools cHT = ContextHelperTools(context, developerSize);
 
@@ -111,48 +111,47 @@ class _FHDState extends State<FHD> {
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsets.all(10),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceAround,
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.stretch,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                                      child: Container(
-                                        width: 200,
-                                        child: TextFormField(
-                                          decoration: InputDecoration(
-                                            border: UnderlineInputBorder(),
-                                            labelText:
-                                            'Поиск модов',
+                                  padding: const EdgeInsets.all(10),
+                                  child: Row(children: [
+                                    Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.stretch,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.fromLTRB(
+                                              0, 0, 0, 10),
+                                          child: Container(
+                                            width: 200,
+                                            child: TextFormField(
+                                              decoration: InputDecoration(
+                                                border: UnderlineInputBorder(),
+                                                labelText: 'Поиск модов',
+                                              ),
+                                            ),
                                           ),
                                         ),
-                                      ),
+                                        Text('Доступные моды:'),
+                                        Expanded(
+                                          child: ListView(
+                                            padding: EdgeInsets.zero,
+                                            shrinkWrap: true,
+                                            scrollDirection: Axis.vertical,
+                                            children: [],
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    Text(
-                                        'Доступные моды:'
-                                    ),
-                                    Expanded(
-                                      child: ListView(
-                                        padding: EdgeInsets.zero,
-                                        shrinkWrap: true,
-                                        scrollDirection: Axis.vertical,
-                                        children: [
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
+
+                                  ])),
                             ),
                             Expanded(
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceAround,
+                                    MainAxisAlignment.spaceAround,
                                 children: [],
                               ),
                             ),
