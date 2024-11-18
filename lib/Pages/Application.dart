@@ -89,80 +89,89 @@ class _FHDState extends State<FHD> {
         ),
         body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Expanded(
-                child: Container(
-                  width: MediaQuery.sizeOf(context).width,
-                  height: MediaQuery.sizeOf(context).height * 1,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [],
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                  child: Container(
+                    width: 200,
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        border: UnderlineInputBorder(),
+                        labelText: 'Поиск модов',
                       ),
-                      Expanded(
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                  padding: const EdgeInsets.all(10),
-                                  child: Row(children: [
-                                    Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.stretch,
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.fromLTRB(
-                                              0, 0, 0, 10),
-                                          child: Container(
-                                            width: 200,
-                                            child: TextFormField(
-                                              decoration: InputDecoration(
-                                                border: UnderlineInputBorder(),
-                                                labelText: 'Поиск модов',
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Text('Доступные моды:'),
-                                        Expanded(
-                                          child: ListView(
-                                            padding: EdgeInsets.zero,
-                                            shrinkWrap: true,
-                                            scrollDirection: Axis.vertical,
-                                            children: [],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-
-                                  ])),
+                    ),
+                  ),
+                ),
+                Text('Доступные моды:'),
+                Expanded(
+                  child: GridView.count(
+                    primary: false,
+                    padding: const EdgeInsets.all(20),
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                    crossAxisCount: 5,
+                    children: <Widget>[
+                      SizedBox(
+                        width: 500,
+                        height: 500,
+                        child: GridTile(
+                          header: Container(
+                            height: 40,
+                            child: Center(
+                              child: Text('Krastorio 2'),
                             ),
-                            Expanded(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [],
-                              ),
+                            color: Colors.black38,
+                          ),
+                          child: Image.network(
+                            'https://assets-mod.factorio.com/assets/0bbd7809fe9151ac3f7cd1c3c604e13d4c8598d9.thumb.png',
+                            loadingBuilder: (context, child, progress) {
+                              if (progress == null) {
+                                return child;
+                              }
+                              return Center(
+                                child: CircularProgressIndicator(
+                                  value: progress.expectedTotalBytes != null
+                                      ? progress.cumulativeBytesLoaded /
+                                      progress.expectedTotalBytes!
+                                      : null,
+                                ),
+                              );
+                            },
+                          ),
+                          footer: Container(
+                            height: 40,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: <Widget>[
+                                TextButton(
+                                  child: const Text('Установить'),
+                                  onPressed: () {
+                                  },
+                                ),
+                                const SizedBox(width: 8),
+                                TextButton(
+                                  child: const Text('Удалить'),
+                                  onPressed: () {
+                                  },
+                                ),
+                                const SizedBox(width: 8),
+                              ],
                             ),
-                          ],
+                            color: Colors.black38,
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
